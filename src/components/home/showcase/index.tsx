@@ -3,19 +3,15 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
+import {useComponentDidMount} from "../../../utils/component";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 export const Showcase: React.FC = () => {
     const showcasesRef = useRef(null);
     const scrollRef = useRef(null);
-    useEffect(() => {
-        // const element = scrollRef.current;
-
-        // const aa = document.querySelector(".toadVideo");
-
-        // // const bb = element.offsetWidth - aa.offsetTop;
-        // // const con = element.querySelector('.showcase-box')
+    useComponentDidMount(() => { 
+    
 
         const revealContainers = document.querySelectorAll(".ani-holder");
 
@@ -83,10 +79,8 @@ export const Showcase: React.FC = () => {
                     },
                 },
             });
+    });
 
-        // `useEffect`'s cleanup phase
-        // return () => scroll.destroy();
-    }, []);
     return (
         <div className="showcases" id="showcases">
             <div

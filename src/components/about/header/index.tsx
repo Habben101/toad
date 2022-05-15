@@ -1,5 +1,4 @@
 import React from "react";
-import { SimpleGrid, Box, Heading, Text } from "@chakra-ui/react";
 import { Lottie } from "@components";
 
 export const AboutHeader: React.FC = () => {

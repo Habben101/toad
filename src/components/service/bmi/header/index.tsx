@@ -1,6 +1,4 @@
 import React from "react";
-import { SimpleGrid, Box, Heading, Text } from "@chakra-ui/react";
-import { Lottie } from "@components";
 import SvgBimteam from "@components/icons/Bimteam";
 import ControlledSlider from "../slider/Slider";
 import Input from "../input/input";
@@ -21,12 +19,12 @@ class BMIHeader extends React.Component {
         sum: value,
         sliderSum: value,
         step: step,
-        pers: null,
-        salary: null,
-        perHour: null,
-        saving: null,
-        salaryInfo: null,
-        BmiPro: null,
+        pers: "41%",
+        salary: "$3900",
+        perHour: "$19.50",
+        saving: "$2740",
+        salaryInfo: "$6100",
+        BmiPro: 1,
     };
     onShoreState = {
         sum: onShoreValue,
@@ -43,8 +41,7 @@ class BMIHeader extends React.Component {
     //       }
     //   }
 
-    // @ts-ignore: Parameter 'value' implicitly has an 'any' type.
-    onInputChange = (value) => {
+    onInputChange = (value: any) => {
         if (value) {
             const sum = parseInt(value, 10);
             this.setState({
@@ -241,13 +238,12 @@ class BMIHeader extends React.Component {
             this.setState({ sum: "" });
         }
     };
-    // @ts-ignore: Parameter 'value' implicitly has an 'any' type.
-    onSlideStart = (value) => {
+    
+    onSlideStart = (value: any) => {
         // Set the step value sent to the slider when the user starts dragging
         this.setState({ step: step });
     };
-    // @ts-ignore: Parameter 'value' implicitly has an 'any' type.
-    onSliderChange = (value) => {
+    onSliderChange = (value: any) => {
         const sum = parseInt(value, 10);
 
         // When the slider is changed, set both input and slider values to reflect new value
@@ -508,8 +504,8 @@ class BMIHeader extends React.Component {
                                     name={"sliderinput"}
                                     id={"sliderinput"}
                                     value={this.state.sum}
-                                    // @ts-ignore: Parameter 'e' implicitly has an 'any' type.
-                                    onChange={(e) =>
+                                    
+                                    onChange={(e : any) =>
                                         this.onInputChange(e.target.value)
                                     }
                                     onFocus={() => this.setState({ step: 1 })} // When the input is focused, set step value to 1
@@ -519,12 +515,12 @@ class BMIHeader extends React.Component {
                                     max={max}
                                     step={this.state.step}
                                     defaultValue={this.state.sliderSum}
-                                    // @ts-ignore: Parameter 'value' implicitly has an 'any' type.
-                                    onUpdate={(value) =>
+                                    
+                                    onUpdate={(value: any) =>
                                         this.onSliderChange(value)
                                     }
-                                    // @ts-ignore: Parameter 'value' implicitly has an 'any' type.
-                                    onSlideStart={(value) =>
+                                    
+                                    onSlideStart={(value: any) =>
                                         this.onSlideStart(value)
                                     }
                                 />

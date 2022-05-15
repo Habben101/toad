@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import {useComponentDidMount} from "../../../utils/component";
 
 export function AboutService() {
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
+    useComponentDidMount(() => {
         // This does not seem to work without a settimeout
         setTimeout(() => {
             const sections = gsap.utils.toArray(".gallery-item-wrapper");
@@ -20,13 +21,12 @@ export function AboutService() {
                     pin: true,
                     scrub: 0.5,
                     snap: 1 / (sections.length - 1),
-                    // @ts-ignore: Object is possibly 'null'.
-                    end: () => `+=${ref.current.offsetWidth}`,
+                    end: () => `+=${ref?.current?.offsetWidth}`,
                 },
             });
             ScrollTrigger.refresh();
         });
-    }, []);
+    });
 
     return (
         <section data-scroll-section className="section-wrapper gallery-wrap">

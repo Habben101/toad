@@ -2,11 +2,12 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {useComponentDidMount} from "../../../utils/component";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Services: React.FC = () => {
-    useEffect(() => {
+    useComponentDidMount(() => {
         gsap.set(".serviceBox__number", {
             opacity: 0,
             y: 50,
@@ -39,7 +40,7 @@ export const Services: React.FC = () => {
             },
             once: true,
         });
-    }, []);
+    });
 
     return (
         <div data-bg="#3E4FE8" data-color="blue-switcher">

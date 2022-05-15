@@ -4,10 +4,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DrawSVGPlugin } from "gsap-trial/dist/DrawSVGPlugin";
 import { SplitText } from "gsap-trial/SplitText";
 import { CustomEase } from "gsap/CustomEase";
+import {useComponentDidMount} from "../../../utils/component";
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, CustomEase, SplitText);
-// @ts-ignore: Parameter 'ref' implicitly has an 'any' type..
-const scrollToRef = (ref) => {
+const scrollToRef = (ref: any) => {
     const element = ref;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset;
@@ -20,13 +20,14 @@ const scrollToRef = (ref) => {
 
 export const VideoSlider: React.FC = () => {
     const ref = useRef(null);
-    const videoWrapper = useRef(null);
-    const InfoBox = useRef(null);
-    const currentNumber = useRef(null);
+    const videoWrapper = useRef<HTMLDivElement>(null);
+    const InfoBox = useRef<HTMLDivElement>(null);
     const executeScroll = () =>
         scrollToRef(document.querySelector("#toadVideo"));
-
-    useEffect(() => {
+        
+    
+    useComponentDidMount(() => { 
+        
         const a = {
             ease1: CustomEase.create("ease1", ".45,.01,.07,1"),
             ease2: CustomEase.create("ease2", "M0,0 C0.496,0.174 0.396,1 1,1"),
@@ -120,16 +121,17 @@ export const VideoSlider: React.FC = () => {
                 },
             },
         });
-        // @ts-ignore: Object is possibly 'null'.
+        if (ref.current) {
+            const definitelyAnElement = ref.current;
+          }
         const thisPinWrap = ref.current.querySelector(".toadVideoWrapper");
         const thisAnimWrap = thisPinWrap.querySelector(
-            ".toadVideoWrapper__info",
+            ".toadVideoWrapper__info"
         );
         const getToValue = () => -(thisAnimWrap.scrollWidth + 100);
-        // @ts-ignore: Object is possibly 'null'.
+        
         const videoInfoWrapperWidth = InfoBox.current.offsetWidth,
             horizontalScrollLength = videoInfoWrapperWidth;
-        // @ts-ignore: Object is possibly 'null'.
         InfoBox.current.getAttribute("data-total"),
             gsap.utils.toArray(".toadVideoWrapper__infoBox");
         gsap.to(".toadVideoWrapper__video", {
@@ -158,12 +160,12 @@ export const VideoSlider: React.FC = () => {
                 thisAnimWrap.classList.contains("to-right") ? getToValue() : 0,
             ease: "none",
         });
-        gsap.utils.toArray(elements.title).forEach((e) => {
-            // @ts-ignore: Object is of type 'unknown'.
+        const section = gsap.utils.toArray(elements.title);
+        section.forEach((e: any) => {
             const t = e.getAttribute("data-index");
-            console.log(t);
-            console.log(e);
-            // @ts-ignore: Object is of type 'unknown'.
+            const currentNumber= document.querySelector("#circleCurrent")
+
+            
             gsap.to(e, {
                 scrollTrigger: {
                     containerAnimation: n,
@@ -173,13 +175,11 @@ export const VideoSlider: React.FC = () => {
                     toggleClass: "active",
                     invalidateOnRefresh: true,
                     onEnter: () => {
-                        // @ts-ignore: Object is possibly 'null'.
-                        currentNumber.current.innerHTML = t;
+                        currentNumber.innerHTML = t;
                     },
                     onLeaveBack: () => {
                         let e;
-                        // @ts-ignore: Object is possibly 'null'.
-                        currentNumber.current.innerHTML =
+                        currentNumber.innerHTML =
                             (e = t - 1) < 10
                                 ? "0" + e.toString()
                                 : e.toString();
@@ -208,7 +208,8 @@ export const VideoSlider: React.FC = () => {
                 duration: 1,
                 ease: "none",
             });
-    }, []);
+    });
+    
     return (
         <section
             className="horizontal"
@@ -274,7 +275,7 @@ export const VideoSlider: React.FC = () => {
                     <div className="hp-video__circle__counter">
                         <div
                             className="hp-video__circle__current"
-                            ref={currentNumber}
+                            id="circleCurrent"
                         >
                             00
                         </div>
@@ -352,3 +353,5 @@ export const VideoSlider: React.FC = () => {
         </section>
     );
 };
+
+

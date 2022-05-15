@@ -46,19 +46,15 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
                         end: "bottom 50%",
                         // scroller: ".smooth-scroll",
                         onEnter: function () {
-                            // @ts-ignore: Object is possibly 'null'.
                             document.querySelector("body").classList.add(col.dataset.color)
                         },
                         onEnterBack: function () {
-                            // @ts-ignore: Object is possibly 'null'.
                             document.querySelector("body").classList.add(col.dataset.color)
                         },
                         onLeave: function () {
-                            // @ts-ignore: Object is possibly 'null'.
                             document.querySelector("body").classList.remove(col.dataset.color)
                         },
                         onLeaveBack: function () {
-                            // @ts-ignore: Object is possibly 'null'.
                             document.querySelector("body").classList.remove(col.dataset.color)
                         }
                     }

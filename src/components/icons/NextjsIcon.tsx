@@ -32,8 +32,6 @@ function SvgNextjsIcon(props: React.SVGProps<SVGSVGElement>) {
                     letterSpacing: ".02px",
                     wordSpacing: ".02px",
                     whiteSpace: "pre",
-                    // @ts-ignore
-                    shapeInside: "url(#toady_gif_svg__a)",
                 }}
                 transform="matrix(1.21318 0 0 1.21318 -58.349 -4.051)"
             >
