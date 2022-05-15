@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { DrawSVGPlugin } from "gsap-trial/dist/DrawSVGPlugin";
-import { SplitText } from "gsap-trial/SplitText";
 import { CustomEase } from "gsap/CustomEase";
 import {useComponentDidMount} from "../../../utils/component";
+import {SplitText} from "../../../utils/SplitText3"
+const DrawSVGPlugin = require("../../../utils/DrawSVGPlugin");
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, CustomEase, SplitText);
 const scrollToRef = (ref: any) => {
