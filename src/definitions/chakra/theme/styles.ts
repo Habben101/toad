@@ -6,11 +6,14 @@ export default {
     styles: {
         global: {
             h1: {
-                fontWeight: 500,
+                fontWeight: "medium",
                 marginBottom: "0.5em",
             },
             p: {
                 marginBottom: "1em",
+            },
+            li: {
+                listStyle: "none",
             },
         },
     },

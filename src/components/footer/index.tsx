@@ -7,6 +7,7 @@ import {
     TwitterIcon,
     YoutubeIcon,
     LinkedinIcon,
+    NextjsIcon,
 } from "@components/icons";
 
 export const Footer: React.FC = () => {
@@ -17,14 +18,18 @@ export const Footer: React.FC = () => {
         marginLeft: "0.25rem",
     };
     return (
-        <Center bg="main.100" py={10}>
+        <Center
+            bg="main.100"
+            py={10}
+            boxShadow="1px 0px 2px 7px rgb(255 255 255 / 5%)"
+        >
             <Flex flexDirection="column">
                 <a href="https://github.com/pankod" target="_blank">
-                    <PankodIcon
+                    <NextjsIcon
                         data-test="icon"
                         color="white"
                         width="140"
-                        height="28"
+                        height="48"
                     />
                 </a>
                 <Flex mt={5}>

@@ -4,9 +4,13 @@
     "plugins": ["@typescript-eslint"],
     "overrides": [
         {
-            "files": ["*.js"],
+            "files": ["src/**/*.{js,jsx,ts,tsx}"],
             "rules": {
-                "@typescript-eslint/no-var-requires": "off"
+                "@typescript-eslint/ban-ts-comment": 0,
+                "@typescript-eslint" : "off",
+                "@typescript-eslint/no-var-requires": 0,
+                "react/no-unescaped-entities": "off",
+                "@next/next/no-page-custom-font": "off"
             }
         }
     ],
@@ -19,7 +23,6 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
+        "prettier/@typescript-eslint"
     ]
 }

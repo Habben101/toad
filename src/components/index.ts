@@ -1,6 +1,10 @@
-export { Header } from "./header";
 export { Logo } from "./logo";
-export { Main } from "./main";
+export { VideoSlider } from "./home/videoSlider";
+export { Services } from "./home/services";
+export { Showcase } from "./home/showcase";
 export { Button } from "./button";
 export { Cards } from "./cards";
 export { Footer } from "./footer";
+export { Lottie } from "./lottie";
+export { AboutHeader } from "./about/header";
+export { AboutService } from "./about/services";

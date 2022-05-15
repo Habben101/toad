@@ -1,17 +1,15 @@
 import React from "react";
-import { Spacer, Flex } from "@chakra-ui/react";
-
-import { Header, Main, Cards, Footer } from "@components";
+import { Spacer } from "@chakra-ui/react";
+import { VideoSlider, Services, Showcase } from "@components";
 
 const Home: React.FC = () => {
     return (
-        <Flex direction="column" minH="100vh">
-            <Header />
-            <Main />
-            <Cards />
+        <div className='mainContainer' id='mainContainer'>
+            <VideoSlider />
+            <Services />
+            <Showcase />
             <Spacer />
-            <Footer />
-        </Flex>
+        </div>
     );
 };
 
