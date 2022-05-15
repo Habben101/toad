@@ -1,9 +1,73 @@
 import React from "react";
 import { Lottie } from "@components";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
+import {useComponentDidMount} from "../../../utils/component";
+gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 export const AboutHeader: React.FC = () => {
+    useComponentDidMount(() => {
+        const a = {
+            ease5: CustomEase.create("ease5", ".075, .82, .165, 1"),
+        };
+        const e = document.querySelectorAll("[data-bg]"),
+        t = document.querySelectorAll("[data-color]")
+        e.length && t.forEach((col) => {
+            if (col instanceof HTMLElement) {
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: col,
+                        start: "top 50%",
+                        end: "bottom 50%",
+                        // scroller: ".smooth-scroll",
+                        onEnter: function () {
+                            document.querySelector("body").classList.add(col.dataset.color)
+                        },
+                        onEnterBack: function () {
+                            document.querySelector("body").classList.add(col.dataset.color)
+                        },
+                        onLeave: function () {
+                            document.querySelector("body").classList.remove(col.dataset.color)
+                        },
+                        onLeaveBack: function () {
+                            document.querySelector("body").classList.remove(col.dataset.color)
+                        }
+                    }
+                })
+        }
+        }),
+        e.forEach((col) => {
+            if (col instanceof HTMLElement) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: col,
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    // scroller: ".smooth-scroll",
+                    onEnter: function() {
+                        gsap.to(document.documentElement, {
+                            ease: a.ease5,
+                            duration: 1.8,
+                            backgroundColor: col.dataset.bg,
+                            // overwrite: "auto"
+                        })
+                    },
+                    onEnterBack: function() {
+                        gsap.to(document.documentElement, {
+                            ease: a.ease5,
+                            duration: 1.8,
+                            backgroundColor: col.dataset.bg,
+                            // overwrite: "auto"
+                        })
+                    }
+                }
+            })
+        }
+    })
+    })
     return (
-        <div className="header_container">
+        <div className="header_container" data-bg="#D9D9D9" data-color="white-switcher">
             <div className="flexRow">
                 <h1 className="header__title">About</h1>
                 <Lottie />

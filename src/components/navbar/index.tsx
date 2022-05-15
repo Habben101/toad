@@ -1,16 +1,14 @@
-import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
-import { useColorMode, Button, Flex, Box, IconButton } from "@chakra-ui/react";
+import { Flex, IconButton } from "@chakra-ui/react";
 import {
     ScrollPositionEffectProps,
     useScrollPosition,
 } from "../../hooks/useScrollPosition";
 import { NavItems, SingleNavItem } from "../../../types";
 import { media } from "../../utils/media";
-import Container from "../container";
 import Drawer from "../drawer";
 import { HamburgerIcon } from "@components/icons/HamburgerIcon";
 import { Logo } from "../logo";
@@ -19,63 +17,55 @@ import SvgProfile from "@components/icons/Profile";
 // const ColorSwitcher = dynamic(() => import('../darkmodeswitch'), { ssr: false });
 
 type NavbarProps = { items: NavItems };
-type ScrollingDirections = "up" | "down" | "none";
+type ScrollingDirections = 'up' | 'down' | 'none';
 type NavbarContainerProps = { hidden: boolean; transparent: boolean };
 
 export default function Navbar({ items }: NavbarProps) {
     const router = useRouter();
-    const { toggle } = Drawer.useDrawer();
-    // const [scrollingDirection, setScrollingDirection] =
-    //     useState<ScrollingDirections>("none");
+  const { toggle } = Drawer.useDrawer();
+  const [scrollingDirection, setScrollingDirection] = useState<ScrollingDirections>('none');
 
-    // let lastScrollY = useRef(0);
-    // const lastRoute = useRef("");
-    // const stepSize = useRef(50);
+  const lastScrollY = useRef(0);
+  const lastRoute = useRef('');
+  const stepSize = useRef(70);
 
-    // useScrollPosition(
-    //     scrollPositionCallback,
-    //     [router.asPath],
-    //     undefined,
-    //     undefined,
-    //     50,
-    // );
+  useScrollPosition(scrollPositionCallback, [router.asPath], undefined, undefined, 70);
 
-    // function scrollPositionCallback({ currPos }: ScrollPositionEffectProps) {
-    //     const routerPath = router.asPath;
-    //     const hasRouteChanged = routerPath !== lastRoute.current;
+  function scrollPositionCallback({ currPos }: ScrollPositionEffectProps) {
+        const routerPath = router.asPath;
+        const hasRouteChanged = routerPath !== lastRoute.current;
 
-    //     if (hasRouteChanged) {
-    //         lastRoute.current = routerPath;
-    //         setScrollingDirection("none");
-    //         return;
-    //     }
+        if (hasRouteChanged) {
+        lastRoute.current = routerPath;
+        setScrollingDirection('none');
+        return;
+        }
 
-    //     const currentScrollY = currPos.y;
-    //     const isScrollingUp = currentScrollY > lastScrollY.current;
-    //     const scrollDifference = Math.abs(lastScrollY.current - currentScrollY);
-    //     const hasScrolledWholeStep = scrollDifference >= stepSize.current;
-    //     const isInNonCollapsibleArea = lastScrollY.current > -50;
+        const currentScrollY = currPos.y;
+        const isScrollingUp = currentScrollY > lastScrollY.current;
+        const scrollDifference = Math.abs(lastScrollY.current - currentScrollY);
+        const hasScrolledWholeStep = scrollDifference >= stepSize.current;
+        const isInNonCollapsibleArea = lastScrollY.current > -50;
 
-    //     if (isInNonCollapsibleArea) {
-    //         setScrollingDirection("none");
-    //         lastScrollY.current = currentScrollY;
-    //         return;
-    //     }
+        if (isInNonCollapsibleArea) {
+        setScrollingDirection('none');
+        lastScrollY.current = currentScrollY;
+        return;
+        }
 
-    //     if (!hasScrolledWholeStep) {
-    //         lastScrollY.current = currentScrollY;
-    //         return;
-    //     }
+        if (!hasScrolledWholeStep) {
+        lastScrollY.current = currentScrollY;
+        return;
+        }
 
-    //     setScrollingDirection(isScrollingUp ? "up" : "down");
-    //     lastScrollY.current = currentScrollY;
-    // }
+        setScrollingDirection(isScrollingUp ? 'up' : 'down');
+        lastScrollY.current = currentScrollY;
+    }
 
-    // const isNavbarHidden = scrollingDirection === "down";
-    // const isTransparent = scrollingDirection === "none";
-
+    const isNavbarHidden = scrollingDirection === 'down';
+    const isTransparent = scrollingDirection === 'none';
     return (
-        <NavbarContainer>
+        <NavbarContainer hidden={isNavbarHidden} transparent={isTransparent}>
             <Flex alignItems="center" justify="space-between" px={10} as="nav">
                 <Flex>
                     <NextLink href="/" passHref>

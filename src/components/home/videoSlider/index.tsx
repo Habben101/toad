@@ -70,7 +70,7 @@ export const VideoSlider: React.FC = () => {
                 // //scroller: document.querySelector("[data-scroll-container]"),
                 scrub: true,
                 pin: ".intro__inner__wrapper",
-                invalidateOnRefresh: !1,
+                invalidateOnRefresh: true,
                 end: "bottom center",
             },
         });
@@ -208,6 +208,68 @@ export const VideoSlider: React.FC = () => {
                 duration: 1,
                 ease: "none",
             });
+        const e = document.querySelectorAll("[data-bg]"),
+        t = document.querySelectorAll("[data-color]")
+        e.length && t.forEach((col) => {
+            if (col instanceof HTMLElement) {
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: col,
+                        start: "top 50%",
+                        end: "bottom 50%",
+                        // scroller: ".smooth-scroll",
+                        onEnter: function () {
+                            document.querySelector("body").classList.add(col.dataset.color)
+                        },
+                        onEnterBack: function () {
+                            document.querySelector("body").classList.add(col.dataset.color)
+                        },
+                        onLeave: function () {
+                            document.querySelector("body").classList.remove(col.dataset.color)
+                        },
+                        onLeaveBack: function () {
+                            document.querySelector("body").classList.remove(col.dataset.color)
+                        }
+                    }
+                })
+        }
+        }),
+        e.forEach((col) => {
+            if (col instanceof HTMLElement) {
+            const backgroundSwitcher = gsap.timeline({
+                scrollTrigger: {
+                    trigger: col,
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    // scroller: ".smooth-scroll",
+                    onEnter: function() {
+                        gsap.to(document.documentElement, {
+                            ease: a.ease5,
+                            duration: 1.8,
+                            backgroundColor: col.dataset.bg,
+                            // overwrite: "auto"
+                        })
+                    },
+                    onEnterBack: function() {
+                        gsap.to(document.documentElement, {
+                            ease: a.ease5,
+                            duration: 1.8,
+                            backgroundColor: col.dataset.bg,
+                            // overwrite: "auto"
+                        })
+                    },
+                    onLeave: function(){
+                        gsap.to(document.documentElement, {
+                            ease: a.ease5,
+                            duration: 1.8,
+                            backgroundColor: "#D9D9D9",
+                            // overwrite: "auto"
+                        })
+                    }
+                }
+            })
+        }
+        })
     });
     
     return (

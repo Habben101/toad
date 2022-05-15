@@ -1,10 +1,10 @@
 export { Logo } from "./logo";
-export { VideoSlider } from "./home/videoSlider";
-export { Services } from "./home/services";
-export { Showcase } from "./home/showcase";
+export { Services } from "./home/services/index";
+export { Showcase } from "./home/showcase/index";
 export { Button } from "./button";
 export { Cards } from "./cards";
 export { Footer } from "./footer";
 export { Lottie } from "./lottie";
-export { AboutHeader } from "./about/header";
-export { AboutService } from "./about/services";
+export { AboutHeader } from "./about/header/index";
+export { AboutService } from "./about/services/index";
+export { VideoSlider } from "./home/videoSlider/index";
